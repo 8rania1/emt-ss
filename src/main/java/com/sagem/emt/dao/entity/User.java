@@ -9,7 +9,7 @@ import lombok.Data;
 @Entity
 
 @Data
-@Table(name = "userEntity")
+@Table(name = "user_entity")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,5 +18,7 @@ public class User {
 	private String lastName;
 	private String mail;
 	private String mobile;
+	private String password;
+	private String role;
 
 }

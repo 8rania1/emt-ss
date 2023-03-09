@@ -7,25 +7,25 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name="categorie")
-
-public class Categorie {
+@Table(name="equipment")
+public class Equipment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String numSerie;
+	private String version;
 	private String nom;
-	private String description;
-	@OneToMany(mappedBy ="equipment",fetch = FetchType.LAZY )
-	private List<Equipment> equipments;
-	
-
+	private String pn;
+	private String status;
+	@ManyToOne
+	private Categorie categorie;
+   @OneToMany(mappedBy = "equipment",fetch = FetchType.LAZY)
+   private List<Mouvement> mouvements;
+   
 }
-	
-	
-
