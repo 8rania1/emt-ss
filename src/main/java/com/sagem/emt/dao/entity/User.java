@@ -6,19 +6,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+
 @Entity
 
 @Data
-@Table(name = "user_entity")
+@Table(name = "user")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private String mail;
-	private String mobile;
-	private String password;
-	private String role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long   id;
+    private String firstName;
+    private String lastName;
+    private String mail;
+    private String mobile;
+    private String password;
+    private String role;
 
 }

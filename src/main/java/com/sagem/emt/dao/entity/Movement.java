@@ -11,14 +11,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="mouvement")
+@Table(name = "movement")
 @Data
-public class Mouvement {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-private Date date;
-private TypeMvm type;
-@ManyToOne
-private Equipment equipment;
+public class Movement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long	      id;
+    private Date	      date;
+    private MovementDirection direction;
+    @ManyToOne
+    private Equipment	      equipment;
 }

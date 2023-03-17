@@ -14,30 +14,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sagem.emt.dao.entity.Equipment;
 import com.sagem.emt.service.EquipmentService;
 
-
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController {
-@Autowired
-private EquipmentService equipmentService;
+    @Autowired
+    private EquipmentService equipmentService;
 
-@GetMapping("/getAll")
-public List<Equipment> getAll(){
+    @GetMapping
+    public List<Equipment> getAll() {
 	return equipmentService.getAll();
-	
-}
-@PostMapping("/addTool")
-public Equipment addEquipment (@RequestBody Equipment e) {
-	return equipmentService.addEquipment(e);
-}
+    }
 
-@DeleteMapping("/deleteTool")
-public void deleteAll() {
+    @PostMapping
+    public Equipment addEquipment(@RequestBody Equipment equipment) {
+	return equipmentService.save(equipment);
+    }
+
+    @DeleteMapping("clear")
+    public void clear() {
 	equipmentService.deleteAll();
-}
+    }
 
-@DeleteMapping("/deleteTool{id}")
-public void deleteEquipment(@PathVariable("id")Long id ) {
-	equipmentService.deleteEquipment(id);
-}
+    @DeleteMapping("{id}")
+    public void deleteEquipment(@PathVariable("id") Long id) {
+	equipmentService.delete(id);
+    }
 }

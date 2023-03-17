@@ -10,33 +10,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.sagem.emt.dao.entity.User;
-import com.sagem.emt.service.UserService;
+import com.sagem.emt.dao.entity.Category;
+import com.sagem.emt.service.CategoryService;
 
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("category")
+public class CategoryController {
     @Autowired
-    private UserService userService;
+    private CategoryService categorieService;
 
     @GetMapping
-    public List<User> getAll() {
-	return userService.getAll();
+    public List<Category> getAll() {
+	return categorieService.getAll();
     }
 
     @PostMapping
-    public User save(@RequestBody User user) {
-	return userService.save(user);
+    public Category save(@RequestBody Category category) {
+	return categorieService.save(category);
     }
 
-    @DeleteMapping("/clear")
+    @DeleteMapping("clear")
     public void deleteAll() {
-	userService.deleteAll();
+	categorieService.deleteAll();
     }
 
     @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-	userService.delete(id);
+    public void delete(@PathVariable("id") Long id) {
+	categorieService.delete(id);
     }
 }

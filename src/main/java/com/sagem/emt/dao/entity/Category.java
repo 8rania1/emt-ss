@@ -13,19 +13,15 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="categorie")
+@Table(name = "category")
 
-public class Categorie {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String nom;
-	private String description;
-	@OneToMany(mappedBy ="equipment",fetch = FetchType.LAZY )
-	private List<Equipment> equipments;
-	
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long	    id;
+    private String	    name;
+    private String	    description;
+    @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+    private List<Equipment> equipments;
 
 }
-	
-	
-
