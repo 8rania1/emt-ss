@@ -2,6 +2,9 @@ package com.sagem.emt.dao.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -19,9 +22,11 @@ public class Equipment {
     private String	   version;
     private String	   name;
     private String	   partNumber;
-    private boolean	   active;
+    @Column(updatable = false)
+    private boolean	   available;
     @ManyToOne
     private Category	   category;
+    @JsonIgnore
     @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
     private List<Movement> movements;
 }

@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: com.sagem.emt.config.hibernate.PrefixPhysicalNamingStrategy
+    properties:
+      hibernate.ejb.interceptor: com.sagem.emt.config.hibernate.HibernateInteceptor

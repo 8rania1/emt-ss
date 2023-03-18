@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sagem.emt.dao.entity.User;
-import com.sagem.emt.service.UserService;
+import com.sagem.emt.dao.repository.UserRepository;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping
-    public List<User> getAll() {
-	return userService.getAll();
+    public List<User> findAll() {
+	return userRepository.findAll();
     }
 
     @PostMapping
     public User save(@RequestBody User user) {
-	return userService.save(user);
+	return userRepository.save(user);
     }
 
     @DeleteMapping("/clear")
     public void deleteAll() {
-	userService.deleteAll();
+	userRepository.deleteAll();
     }
 
     @DeleteMapping("{id}")
     public void deleteUser(@PathVariable("id") Long id) {
-	userService.delete(id);
+	userRepository.deleteById(id);
     }
 }

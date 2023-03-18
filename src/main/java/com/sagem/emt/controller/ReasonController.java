@@ -9,34 +9,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sagem.emt.dao.entity.Category;
-import com.sagem.emt.dao.repository.CategoryRepository;
+import com.sagem.emt.dao.entity.MovementDirection;
+import com.sagem.emt.dao.entity.Reason;
+import com.sagem.emt.dao.repository.ReasonRepository;
 
 @RestController
-@RequestMapping("category")
-public class CategoryController {
+@RequestMapping("reason")
+public class ReasonController {
     @Autowired
-    private CategoryRepository categoryRepository;
+    private ReasonRepository reasonRepository;
 
     @GetMapping
-    public List<Category> getAll() {
-	return categoryRepository.findAll();
+    public List<Reason> findAll(@RequestParam(name = "direction", required = true) String direction) {
+	return reasonRepository.findByDirection(MovementDirection.valueOf(direction));
     }
 
     @PostMapping
-    public Category save(@RequestBody Category category) {
-	return categoryRepository.save(category);
+    public Reason save(@RequestBody Reason reason) {
+	return reasonRepository.save(reason);
     }
 
     @DeleteMapping("clear")
     public void deleteAll() {
-	categoryRepository.deleteAll();
+	reasonRepository.deleteAll();
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Long id) {
-	categoryRepository.deleteById(id);
+	reasonRepository.deleteById(id);
     }
 }
