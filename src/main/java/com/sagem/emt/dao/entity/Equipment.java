@@ -34,6 +34,7 @@ public class Equipment {
 	private String partNumber;
 	@Column(updatable = false)
 	private boolean available;
+
 	@ManyToOne
 	private Category category;
 	@ManyToOne
