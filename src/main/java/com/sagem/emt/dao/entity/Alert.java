@@ -6,19 +6,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="mouvement")
 @Data
-public class Mouvement {
+@Table(name="alert")
+public class Alert {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-private String nom;
-private TypeMvm type;
-@ManyToOne
-private Equipment equipment;
+public Long idAlert;
+public String nom;
+public String description;
+
 }

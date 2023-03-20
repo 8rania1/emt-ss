@@ -21,7 +21,7 @@ public class Categorie {
 	private Long id;
 	private String nom;
 	private String description;
-	@OneToMany(mappedBy ="equipment",fetch = FetchType.LAZY )
+	@OneToMany(mappedBy ="categorie",fetch = FetchType.LAZY )
 	private List<Equipment> equipments;
 	
 

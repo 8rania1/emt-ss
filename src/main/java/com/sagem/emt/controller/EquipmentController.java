@@ -26,17 +26,17 @@ public List<Equipment> getAll(){
 	return equipmentService.getAll();
 	
 }
-@PostMapping("/addTool")
+@PostMapping("/addEquipment")
 public Equipment addEquipment (@RequestBody Equipment e) {
 	return equipmentService.addEquipment(e);
 }
 
-@DeleteMapping("/deleteTool")
+@DeleteMapping("/deleteAll")
 public void deleteAll() {
 	equipmentService.deleteAll();
 }
 
-@DeleteMapping("/deleteTool{id}")
+@DeleteMapping("/deleteEquipment{id}")
 public void deleteEquipment(@PathVariable("id")Long id ) {
 	equipmentService.deleteEquipment(id);
 }

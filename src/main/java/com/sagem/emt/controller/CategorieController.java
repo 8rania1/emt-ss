@@ -26,8 +26,8 @@ public class CategorieController {
 		return categorieService.getAll();
 	}
 	
-	@PostMapping("/addcategorieS")
-	 public Categorie addUcategorieS(@RequestBody Categorie c) {
+	@PostMapping("/addCategorie")
+	 public Categorie addUCategorieS(@RequestBody Categorie c) {
 		 return categorieService.addCategorie(c);
 	 }
 	 
@@ -35,8 +35,8 @@ public class CategorieController {
 	 public void deleteAll() {
 		categorieService.deleteAll();
 	 }
-	@DeleteMapping("/deletecategorieS/{id}")
-	 public void deletecategorieS(@PathVariable("id")Long id) {
+	@DeleteMapping("/deleteCategorie/{id}")
+	 public void deleteCategorie(@PathVariable("id")Long id) {
 		categorieService.deleteCategorie(id);
 	 }
 }
