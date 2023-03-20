@@ -1,7 +1,7 @@
 package com.sagem.emt.service;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sagem.emt.dao.entity.Category;
 import com.sagem.emt.dao.entity.Movement;
@@ -22,6 +22,7 @@ public class MovementService {
     private final CategoryRepository  categoryRepository;
     private final NotificationService notificationService;
 
+    @Transactional
     public Movement save(Movement movement) {
 	equipmentRepository.available(movement.getDirection() == MovementDirection.IN,
 		movement.getEquipment().getSerialNumber());
@@ -31,7 +32,7 @@ public class MovementService {
 	return movementRepository.save(movement);
     }
 
-    @Scheduled(fixedDelay = 10000000)
+//    @Scheduled(fixedDelay = 1000)
     public void threshold() {
 	log.info("check threshold");
 	this.categoryRepository.findAll().forEach(category -> threshold(category.getId()));

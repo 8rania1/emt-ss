@@ -2,6 +2,7 @@ package com.sagem.emt.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,9 @@ public class ReasonController {
     private ReasonRepository reasonRepository;
 
     @GetMapping
-    public List<Reason> findAll(@RequestParam(name = "direction", required = true) String direction) {
-	return reasonRepository.findByDirection(MovementDirection.valueOf(direction));
+    public List<Reason> findAll(@RequestParam(name = "direction", required = false) String direction) {
+	return StringUtils.isEmpty(direction) ? reasonRepository.findAll()
+		: reasonRepository.findByDirection(MovementDirection.valueOf(direction));
     }
 
     @PostMapping

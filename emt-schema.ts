@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-03-18 11:41:50.
+// Generated using typescript-generator version 3.1.1185 on 2023-03-19 11:40:26.
 
 export interface Category {
     id: number;
@@ -11,10 +11,11 @@ export interface Category {
 
 export interface Equipment {
     serialNumber: string;
+    creationDate: Date;
     version: string;
     name: string;
     partNumber: string;
-    active: boolean;
+    available: boolean;
     category: Category;
 }
 
@@ -25,6 +26,7 @@ export interface Movement {
     equipment: Equipment;
     reason: Reason;
     note: string;
+    user: User;
 }
 
 export interface Notification {
