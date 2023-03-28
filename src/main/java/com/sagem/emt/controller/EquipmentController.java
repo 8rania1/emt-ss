@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sagem.emt.dao.entity.Equipment;
 import com.sagem.emt.dao.repository.EquipmentRepository;
+import com.sagem.emt.service.NotificationService;
 
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController {
     @Autowired
-    private EquipmentRepository equipmentRepository;
+    private EquipmentRepository	equipmentRepository;
+    @Autowired
+    private NotificationService	notificationService;
 
     @GetMapping
     public Page<Equipment> getAll(Pageable pageable) {
@@ -27,7 +30,9 @@ public class EquipmentController {
 
     @PostMapping
     public Equipment addEquipment(@RequestBody Equipment equipment) {
-	return equipmentRepository.save(equipment);
+	equipment = equipmentRepository.save(equipment);
+	notificationService.notification("equipement", "new equipment " + equipment.getName() + " added");
+	return equipment;
     }
 
     @DeleteMapping("clear")
