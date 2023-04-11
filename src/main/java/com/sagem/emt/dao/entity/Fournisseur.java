@@ -9,15 +9,15 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="fournisseur")
+@Table(name = "fournisseur")
 
 public class Fournisseur {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long idF;
-private String nom;
-private String mail;
-private String adresse;
-private Integer numero;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idF;
+	private String nom;
+	private String mail;
+	private String adresse;
+	private Integer numero;
 
 }

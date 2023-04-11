@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="equipment")
+@Table(name = "equipment")
 public class Equipment {
 	@Id
 	private String numSerie;
@@ -22,10 +22,10 @@ public class Equipment {
 	private String nom;
 	private String pn;
 	private String status;
-	
+
 	@ManyToOne
 	private Categorie categorie;
-   @OneToMany(mappedBy = "equipment",fetch = FetchType.LAZY)
-   private List<Mouvement> mouvements;
-   
+	@OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+	private List<Mouvement> mouvements;
+
 }

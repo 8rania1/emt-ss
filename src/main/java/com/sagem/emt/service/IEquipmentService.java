@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sagem.emt.dao.entity.Equipment;
 
-
 public interface IEquipmentService {
 	public List<Equipment> getAll();
-	public Equipment addEquipment (@RequestBody Equipment e);
+
+	public Equipment addEquipment(@RequestBody Equipment e);
+
 	public void deleteAll();
-	public void deleteEquipment(@PathVariable("id")Long id );
+
+	public void deleteEquipment(@PathVariable("id") Long id);
 }

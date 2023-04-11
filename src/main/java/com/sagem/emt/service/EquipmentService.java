@@ -10,16 +10,15 @@ import com.sagem.emt.dao.repository.EquipmentRepository;
 
 @Service
 public class EquipmentService implements IEquipmentService {
- @Autowired
- private EquipmentRepository equipmentRepository;
+	@Autowired
+	private EquipmentRepository equipmentRepository;
 
-	
- @Override
+	@Override
 	public List<Equipment> getAll() {
 		// TODO Auto-generated method stub
 		return equipmentRepository.findAll();
 	}
- 
+
 	@Override
 	public Equipment addEquipment(Equipment e) {
 		// TODO Auto-generated method stub
@@ -37,8 +36,5 @@ public class EquipmentService implements IEquipmentService {
 		// TODO Auto-generated method stub
 		equipmentRepository.deleteById(id);
 	}
-
-
-	
 
 }

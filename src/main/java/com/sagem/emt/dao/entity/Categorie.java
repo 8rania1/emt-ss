@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="categorie")
+@Table(name = "categorie")
 
 public class Categorie {
 	@Id
@@ -21,11 +21,7 @@ public class Categorie {
 	private Long id;
 	private String nom;
 	private String description;
-	@OneToMany(mappedBy ="categorie",fetch = FetchType.LAZY )
+	@OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY)
 	private List<Equipment> equipments;
-	
 
 }
-	
-	
-

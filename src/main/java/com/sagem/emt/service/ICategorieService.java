@@ -9,7 +9,10 @@ import com.sagem.emt.dao.entity.Categorie;
 
 public interface ICategorieService {
 	public List<Categorie> getAll();
+
 	public Categorie addCategorie(@RequestBody Categorie c);
+
 	public void deleteAll();
-	public void deleteCategorie(@PathVariable("id")Long id) ;
+
+	public void deleteCategorie(@PathVariable("id") Long id);
 }

@@ -13,10 +13,11 @@ import com.sagem.emt.service.MouvementService;
 @RestController
 @RequestMapping("/mouvement")
 public class MouvementController {
-@Autowired
-private MouvementService mouvementService;
+	@Autowired
+	private MouvementService mouvementService;
+
 	@PostMapping("/addMouvement")
-	public Mouvement addMouvement (@RequestBody Mouvement e) {
+	public Mouvement addMouvement(@RequestBody Mouvement e) {
 		return mouvementService.addMouvement(e);
 	}
 }

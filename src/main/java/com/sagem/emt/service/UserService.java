@@ -18,7 +18,6 @@ public class UserService implements IUserService {
 		return userRepository.findAll();
 	}
 
-
 	@Override
 	public User addUser(User u) {
 		// TODO Auto-generated method stub

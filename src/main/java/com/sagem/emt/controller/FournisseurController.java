@@ -15,23 +15,27 @@ import com.sagem.emt.service.FournisseurService;
 @RestController
 @RequestMapping("/fournisseur")
 public class FournisseurController {
-@Autowired 
-private FournisseurService fournisseurService;
-@GetMapping("/getAll")
-public List<Fournisseur>getAll(){
-	return fournisseurService.getAll();
-}
-@PostMapping("/addFournisseur")
-public Fournisseur addFournisseur(Fournisseur f) {
-	return fournisseurService.addFournisseur(f);
-}
-@DeleteMapping("/deleteAll")
-public void deleteAll() {
-	 fournisseurService.deleteAll();
-}
-@DeleteMapping("/deleteFournisseur/{id}")
-public void deleteFournisseur(Long id) {
-	 fournisseurService.deleteFournisseur(id);
-}
+	@Autowired
+	private FournisseurService fournisseurService;
+
+	@GetMapping("/getAll")
+	public List<Fournisseur> getAll() {
+		return fournisseurService.getAll();
+	}
+
+	@PostMapping("/addFournisseur")
+	public Fournisseur addFournisseur(Fournisseur f) {
+		return fournisseurService.addFournisseur(f);
+	}
+
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		fournisseurService.deleteAll();
+	}
+
+	@DeleteMapping("/deleteFournisseur/{id}")
+	public void deleteFournisseur(Long id) {
+		fournisseurService.deleteFournisseur(id);
+	}
 
 }

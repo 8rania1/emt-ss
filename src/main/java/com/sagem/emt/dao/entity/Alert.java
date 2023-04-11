@@ -1,7 +1,5 @@
 package com.sagem.emt.dao.entity;
 
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,12 +9,12 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="alert")
+@Table(name = "alert")
 public class Alert {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-public Long idAlert;
-public String nom;
-public String description;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long idAlert;
+	public String nom;
+	public String description;
 
 }

@@ -24,19 +24,20 @@ public class UserController {
 	public List<User> getAll() {
 		return userService.getAll();
 	}
-	
+
 	@PostMapping("/addUser")
-	 public User addUser(@RequestBody User u) {
-		 return userService.addUser(u);
-	 }
-	 
+	public User addUser(@RequestBody User u) {
+		return userService.addUser(u);
+	}
+
 	@DeleteMapping("/deleteAll")
-	 public void deleteAll() {
-		 userService.deleteAll();
-	 }
+	public void deleteAll() {
+		userService.deleteAll();
+	}
+
 	@DeleteMapping("/deleteUser/{id}")
-	 public void deleteUser(@PathVariable("id")Long id) {
-		 userService.deleteUser(id);
-	 }
-	
+	public void deleteUser(@PathVariable("id") Long id) {
+		userService.deleteUser(id);
+	}
+
 }

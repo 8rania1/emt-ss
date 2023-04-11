@@ -10,31 +10,31 @@ import com.sagem.emt.dao.repository.CategorieRepository;
 
 @Service
 public class CategorieService implements ICategorieService {
-@Autowired
-private CategorieRepository categorieRepository;
+	@Autowired
+	private CategorieRepository categorieRepository;
 
-@Override
-public List<Categorie> getAll() {
-	// TODO Auto-generated method stub
-	return categorieRepository.findAll();
-}
+	@Override
+	public List<Categorie> getAll() {
+		// TODO Auto-generated method stub
+		return categorieRepository.findAll();
+	}
 
-@Override
-public Categorie addCategorie(Categorie c) {
-	// TODO Auto-generated method stub
-	return categorieRepository.save(c);
-}
+	@Override
+	public Categorie addCategorie(Categorie c) {
+		// TODO Auto-generated method stub
+		return categorieRepository.save(c);
+	}
 
-@Override
-public void deleteAll() {
-	// TODO Auto-generated method stub
-	categorieRepository.deleteAll();
-}
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		categorieRepository.deleteAll();
+	}
 
-@Override
-public void deleteCategorie(Long id) {
-	// TODO Auto-generated method stub
-	categorieRepository.deleteById(id);
-}
+	@Override
+	public void deleteCategorie(Long id) {
+		// TODO Auto-generated method stub
+		categorieRepository.deleteById(id);
+	}
 
 }

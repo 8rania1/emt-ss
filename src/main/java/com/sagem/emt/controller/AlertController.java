@@ -15,15 +15,17 @@ import com.sagem.emt.service.AlertService;
 @RestController
 @RequestMapping("/alert")
 public class AlertController {
-@Autowired 
-private AlertService alertService;
-@GetMapping("/getAll")
-public List<Alert> getAll(){
-	return alertService.getAll();
-	
-}
-@PostMapping("/addAlert")
-public Alert addAlert(@RequestBody Alert a) {
-	return alertService.addAlert(a);
-}
+	@Autowired
+	private AlertService alertService;
+
+	@GetMapping("/getAll")
+	public List<Alert> getAll() {
+		return alertService.getAll();
+
+	}
+
+	@PostMapping("/addAlert")
+	public Alert addAlert(@RequestBody Alert a) {
+		return alertService.addAlert(a);
+	}
 }
