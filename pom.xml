@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -26,20 +27,54 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-messaging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.26</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>be.ceau</groupId>
+			<artifactId>chart</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -50,4 +85,79 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>ts</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>cz.habarta.typescript-generator</groupId>
+						<artifactId>typescript-generator-maven-plugin</artifactId>
+						<version>3.1.1185</version>
+						<executions>
+							<execution>
+								<id>generate</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<phase>generate-sources</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<jsonLibrary>jackson2</jsonLibrary>
+							<classPatterns>com.sagem.emt.dao.entity.*</classPatterns>
+							<outputKind>module</outputKind>
+							<outputFileType>implementationFile</outputFileType>
+							<outputFile>emt-schema.ts</outputFile>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>liquibase</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.liquibase</groupId>
+						<artifactId>liquibase-maven-plugin</artifactId>
+						<version>4.21.1</version>
+						<configuration>
+							<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+							<changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
+							<diffChangeLogFile>src/main/resources/schema.changelog.xml</diffChangeLogFile>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.liquibase.ext</groupId>
+								<artifactId>liquibase-hibernate6</artifactId>
+								<version>4.21.1</version>
+							</dependency>
+							<dependency>
+								<groupId>jakarta.validation</groupId>
+								<artifactId>jakarta.validation-api</artifactId>
+								<version>3.0.2</version>
+							</dependency>
+
+							<dependency>
+								<groupId>org.springframework.data</groupId>
+								<artifactId>spring-data-jpa</artifactId>
+								<version>3.0.2</version>
+							</dependency>
+							<dependency>
+								<groupId>io.hypersistence</groupId>
+								<artifactId>hypersistence-utils-hibernate-60</artifactId>
+								<version>3.2.0</version>
+							</dependency>
+							<dependency>
+								<groupId>com.fasterxml.jackson.core</groupId>
+								<artifactId>jackson-databind</artifactId>
+								<version>2.14.2</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
