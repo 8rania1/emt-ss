@@ -18,17 +18,15 @@ import com.sagem.emt.dao.repository.EquipmentRepository;
 import com.sagem.emt.dao.repository.MovementRepository;
 import com.sagem.emt.dao.repository.ReasonRepository;
 
-import be.ceau.chart.BarChart;
+import be.ceau.chart.LineChart;
 import be.ceau.chart.PieChart;
-import be.ceau.chart.data.BarData;
+import be.ceau.chart.data.LineData;
 import be.ceau.chart.data.PieData;
-import be.ceau.chart.dataset.BarDataset;
+import be.ceau.chart.dataset.LineDataset;
 import be.ceau.chart.dataset.PieDataset;
-import be.ceau.chart.options.BarOptions;
+import be.ceau.chart.options.LineOptions;
 import be.ceau.chart.options.PieOptions;
 import be.ceau.chart.options.Title;
-import be.ceau.chart.options.scales.BarScale;
-import be.ceau.chart.options.ticks.LinearTicks;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -50,19 +48,19 @@ public class ChartController {
 
 	@GetMapping(path = "reasons")
 	@PostAuthorize("hasPermission('chart', 'reasons.view')")
-	public BarChart reasons() {
+	public PieChart reasons() {
 		List<Reason> reasons = reasonRepository.findAll();
 		List<BigDecimal> counts = reasons.stream().map(movementRepository::countByReason).collect(Collectors.toList());
 		List<String> reasonssss = reasons.stream().map(Reason::getTitle).collect(Collectors.toList());
-		LinearTicks ticks = new LinearTicks().setMin(0).setStepSize(5);
-		BarDataset dataset = new BarDataset().setLabel("reasons")
-				.setData(counts.toArray(new BigDecimal[counts.size()]));
-		BarData data = new BarData().addLabels(reasonssss.toArray(new String[reasonssss.size()])).addDataset(dataset);
+		PieDataset dataset = new PieDataset().setLabel("reasons")
+				.setData(counts.toArray(new BigDecimal[counts.size()])).setBorderWidth(2);
+		PieData data = new PieData().addLabels(reasonssss.toArray(new String[reasonssss.size()])).addDataset(dataset);
 
-		BarScale scale = new BarScale().addxAxes(BarScale.xAxis().setBarThickness(new BigDecimal(5)))
-				.addyAxes(BarScale.yAxis().setTicks(ticks));
-		BarOptions options = new BarOptions().setScales(scale).setResponsive(true);
-		return new BarChart(data, options);
+
+
+		PieOptions options = new PieOptions().setResponsive(true).setPlugins(
+				new MutablePair<String, Object>("title", new Title().setDisplay(true).setText("movement reason view")));
+		return new PieChart(data, options);
 	}
 
 	private PieChart category(Category category) {
