@@ -18,30 +18,35 @@ import com.sagem.emt.service.NotificationService;
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController {
-    @Autowired
-    private EquipmentRepository	equipmentRepository;
-    @Autowired
-    private NotificationService	notificationService;
+	@Autowired
+	private EquipmentRepository equipmentRepository;
+	@Autowired
+	private NotificationService notificationService;
 
-    @GetMapping
-    public Page<Equipment> getAll(Pageable pageable) {
-	return equipmentRepository.findAll(pageable);
-    }
+	@GetMapping
+	public Page<Equipment> getAll(Pageable pageable) {
+		return equipmentRepository.findAll(pageable);
+	}
 
-    @PostMapping
-    public Equipment addEquipment(@RequestBody Equipment equipment) {
-	equipment = equipmentRepository.save(equipment);
-	notificationService.notification("equipement", "new equipment " + equipment.getName() + " added");
-	return equipment;
-    }
+	@GetMapping(path = "{serialNumber}")
+	public Equipment equipment(@PathVariable(name = "serialNumber", required = true) String serialNumber) {
+		return equipmentRepository.findById(serialNumber).orElseThrow(RuntimeException::new);
+	}
 
-    @DeleteMapping("clear")
-    public void clear() {
-	equipmentRepository.deleteAll();
-    }
+	@PostMapping
+	public Equipment addEquipment(@RequestBody Equipment equipment) {
+		equipment = equipmentRepository.save(equipment);
+		notificationService.notification("equipement", "new equipment " + equipment.getName() + " added");
+		return equipment;
+	}
 
-    @DeleteMapping("{id}")
-    public void deleteEquipment(@PathVariable("id") Long id) {
-	equipmentRepository.deleteById(id);
-    }
+	@DeleteMapping("clear")
+	public void clear() {
+		equipmentRepository.deleteAll();
+	}
+
+	@DeleteMapping("{id}")
+	public void deleteEquipment(@PathVariable("serialNumber") String serialNumber) {
+		equipmentRepository.deleteById(serialNumber);
+	}
 }

@@ -29,4 +29,6 @@ public class Category {
     @JsonIgnore
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Equipment> equipments;
+    
+    
 }

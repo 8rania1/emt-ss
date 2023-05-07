@@ -3,7 +3,6 @@ package com.sagem.emt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,36 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sagem.emt.dao.entity.Category;
-import com.sagem.emt.dao.repository.CategoryRepository;
+import com.sagem.emt.dao.entity.Supplier;
+import com.sagem.emt.dao.repository.SupplierRepository;
 
 @RestController
-@RequestMapping("category")
-public class CategoryController {
+@RequestMapping("supplier")
+public class SupplierController {
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private SupplierRepository supplierRepository;
 
 	@GetMapping
-	@PostAuthorize("hasPermission('category', 'collection.view')")
-	public List<Category> getAll() {
-		return categoryRepository.findAll();
+	public List<Supplier> getAll() {
+		return supplierRepository.findAll();
 	}
 
 	@PostMapping
-	@PostAuthorize("hasPermission('category', 'save')")
-	public Category save(@RequestBody Category category) {
-		return categoryRepository.save(category);
+	public Supplier save(@RequestBody Supplier supplier) {
+		return supplierRepository.save(supplier);
 	}
 
 	@DeleteMapping("clear")
-	@PostAuthorize("hasPermission('category', 'clear')")
 	public void deleteAll() {
-		categoryRepository.deleteAll();
+		supplierRepository.deleteAll();
 	}
 
 	@DeleteMapping("{id}")
-	@PostAuthorize("hasPermission('category', 'delete')")
 	public void delete(@PathVariable("id") Long id) {
-		categoryRepository.deleteById(id);
+		supplierRepository.deleteById(id);
 	}
 }

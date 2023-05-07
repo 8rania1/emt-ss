@@ -19,24 +19,26 @@ import lombok.Data;
 @Data
 @Table(name = "equipment")
 public class Equipment {
-    @PrePersist
-    public void prePersist() {
-	this.creationDate = LocalDateTime.now();
-	this.available = true;
-    }
+	@PrePersist
+	public void prePersist() {
+		this.creationDate = LocalDateTime.now();
+		this.available = true;
+	}
 
-    @Id
-    private String	   serialNumber;
-    @Column(updatable = false)
-    private LocalDateTime  creationDate;
-    private String	   version;
-    private String	   name;
-    private String	   partNumber;
-    @Column(updatable = false)
-    private boolean	   available;
-    @ManyToOne
-    private Category	   category;
-    @JsonIgnore
-    @OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
-    private List<Movement> movements;
+	@Id
+	private String serialNumber;
+	@Column(updatable = false)
+	private LocalDateTime creationDate;
+	private String version;
+	private String name;
+	private String partNumber;
+	@Column(updatable = false)
+	private boolean available;
+	@ManyToOne
+	private Category category;
+	@ManyToOne
+	private Supplier supplier;
+	@JsonIgnore
+	@OneToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+	private List<Movement> movements;
 }

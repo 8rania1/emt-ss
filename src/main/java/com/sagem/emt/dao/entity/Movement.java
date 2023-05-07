@@ -17,24 +17,26 @@ import lombok.Data;
 @Table(name = "movement")
 @Data
 public class Movement {
-    @PrePersist
-    public void prePersist() {
-	this.date = LocalDateTime.now();
-    }
+	@PrePersist
+	public void prePersist() {
+		this.date = LocalDateTime.now();
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long	      id;
-    @Column(updatable = false)
-    private LocalDateTime     date;
-    private MovementDirection direction;
-    @ManyToOne
-    @JoinColumn(name = "equipment")
-    private Equipment	      equipment;
-    @ManyToOne
-    @JoinColumn(name = "reason")
-    private Reason	      reason;
-    private String	      note;
-    @ManyToOne
-    private User	      user;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(updatable = false)
+	private LocalDateTime date;
+	@Column(nullable = false)
+	private MovementDirection direction;
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Equipment equipment;
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Reason reason;
+	private String note;
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private User user;
 }

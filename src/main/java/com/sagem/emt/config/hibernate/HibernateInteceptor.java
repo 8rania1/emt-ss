@@ -11,19 +11,19 @@ import com.sagem.emt.service.NotificationService;
 
 //@Component
 public class HibernateInteceptor implements Interceptor {
-    @Autowired
-    private NotificationService	notificationService;
+	@Autowired
+	private NotificationService notificationService;
 
-    @Override
-    public boolean onSave(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types)
-	    throws CallbackException {
-	System.out.println("hibernate inteceptor");
-	notificationService.notification("save " + entity.getClass().getName(), entity.toString());
-	if (entity instanceof Equipment) {
-	    Equipment equipment = Equipment.class.cast(entity);
-	    if (!equipment.isAvailable()) {
-	    }
+	@Override
+	public boolean onSave(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types)
+			throws CallbackException {
+		System.out.println("hibernate inteceptor");
+		notificationService.notification("save " + entity.getClass().getName(), entity.toString());
+		if (entity instanceof Equipment) {
+			Equipment equipment = Equipment.class.cast(entity);
+			if (!equipment.isAvailable()) {
+			}
+		}
+		return Interceptor.super.onSave(entity, id, state, propertyNames, types);
 	}
-	return Interceptor.super.onSave(entity, id, state, propertyNames, types);
-    }
 }

@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 public class HibernateInterceptorRegistration implements HibernatePropertiesCustomizer {
-    @Autowired
-    private Interceptor hibernateInteceptor;
+	@Autowired
+	private Interceptor hibernateInteceptor;
 
-    @Override
-    public void customize(Map<String, Object> hibernateProperties) {
-	hibernateProperties.put("hibernate.session_factory.interceptor", hibernateInteceptor);
-    }
+	@Override
+	public void customize(Map<String, Object> hibernateProperties) {
+		hibernateProperties.put("hibernate.session_factory.interceptor", hibernateInteceptor);
+	}
 }
