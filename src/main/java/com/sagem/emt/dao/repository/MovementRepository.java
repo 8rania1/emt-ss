@@ -16,5 +16,7 @@ public interface MovementRepository extends JpaRepository<Movement, Long> {
 
 	BigDecimal countByReason(Reason reason);
 
+	void deleteByEquipmentId(Long id);
+
 	List<Movement> findByEquipmentSerialNumber(String serialNumber);
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import com.sagem.emt.dao.entity.Category;
 import com.sagem.emt.dao.entity.Equipment;
 
-public interface EquipmentRepository extends JpaRepository<Equipment, String> {
+public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 	@Modifying
 	@Query("update Equipment equipment set equipment.available = :available where equipment.serialNumber = :serialNumber")
 	void available(@Param("available") boolean available, @Param("serialNumber") String serialNumber);
