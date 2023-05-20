@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/emt
+    driver-class-name: org.postgresql.Driver 
+    username: postgres
+    password: admin
+  main:
+    banner-mode: OFF      
+  liquibase:
+    enabled: true
+    change-log: classpath:db/db.changelog-master.xml

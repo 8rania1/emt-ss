@@ -12,19 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sagem.emt.dao.entity.Category;
-import com.sagem.emt.dao.entity.Reason;
+import com.sagem.emt.dao.entity.Status;
 import com.sagem.emt.dao.repository.CategoryRepository;
 import com.sagem.emt.dao.repository.EquipmentRepository;
 import com.sagem.emt.dao.repository.MovementRepository;
-import com.sagem.emt.dao.repository.ReasonRepository;
+import com.sagem.emt.dao.repository.StatusRepository;
 
-import be.ceau.chart.LineChart;
 import be.ceau.chart.PieChart;
-import be.ceau.chart.data.LineData;
 import be.ceau.chart.data.PieData;
-import be.ceau.chart.dataset.LineDataset;
 import be.ceau.chart.dataset.PieDataset;
-import be.ceau.chart.options.LineOptions;
 import be.ceau.chart.options.PieOptions;
 import be.ceau.chart.options.Title;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +32,7 @@ public class ChartController {
 
 	private final CategoryRepository categoryRepository;
 	private final EquipmentRepository equipmentRepository;
-	private final ReasonRepository reasonRepository;
+	private final StatusRepository reasonRepository;
 	private final MovementRepository movementRepository;
 
 	@GetMapping
@@ -49,9 +45,9 @@ public class ChartController {
 	@GetMapping(path = "reasons")
 	@PostAuthorize("hasPermission('chart', 'reasons.view')")
 	public PieChart reasons() {
-		List<Reason> reasons = reasonRepository.findAll();
-		List<BigDecimal> counts = reasons.stream().map(movementRepository::countByReason).collect(Collectors.toList());
-		List<String> reasonssss = reasons.stream().map(Reason::getTitle).collect(Collectors.toList());
+		List<Status> statusList = reasonRepository.findAll();
+		List<BigDecimal> counts = statusList.stream().map(movementRepository::countByStatus).collect(Collectors.toList());
+		List<String> reasonssss = statusList.stream().map(Status::getTitle).collect(Collectors.toList());
 		PieDataset dataset = new PieDataset().setLabel("reasons")
 				.setData(counts.toArray(new BigDecimal[counts.size()])).setBorderWidth(2);
 		PieData data = new PieData().addLabels(reasonssss.toArray(new String[reasonssss.size()])).addDataset(dataset);

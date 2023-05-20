@@ -1,127 +1,187 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="mohamed.rojbeni" id="1683576581251-1">
-        <createTable tableName="Permission">
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PermissionPK"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-2">
-        <createTable tableName="Supplier">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="SupplierPK"/>
-            </column>
-            <column name="address" type="VARCHAR(255)"/>
-            <column name="email" type="VARCHAR(255)"/>
-            <column name="mobile" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-3">
-        <createTable tableName="category">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="categoryPK"/>
-            </column>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="threshold" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-4">
-        <createTable tableName="emt_user">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="emt_userPK"/>
-            </column>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="first_name" type="VARCHAR(255)"/>
-            <column name="last_name" type="VARCHAR(255)"/>
-            <column name="mobile" type="VARCHAR(255)"/>
-            <column name="password" type="VARCHAR(255)"/>
-            <column name="permissions" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-5">
-        <createTable tableName="equipment">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="equipmentPK"/>
-            </column>
-            <column name="available" type="BOOLEAN"/>
-            <column name="creation_date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="part_number" type="VARCHAR(255)"/>
-            <column name="serial_number" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="version" type="VARCHAR(255)"/>
-            <column name="category_id" type="BIGINT"/>
-            <column name="supplier_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-6">
-        <createTable tableName="movement">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="movementPK"/>
-            </column>
-            <column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
-            <column name="direction" type="SMALLINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="note" type="VARCHAR(255)"/>
-            <column name="equipment_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="reason_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-7">
-        <createTable tableName="notification">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="notificationPK"/>
-            </column>
-            <column name="message" type="VARCHAR(255)"/>
-            <column name="read" type="BOOLEAN"/>
-            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
-            <column name="title" type="VARCHAR(255)"/>
-            <column name="user_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-8">
-        <createTable tableName="reason">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="reasonPK"/>
-            </column>
-            <column name="direction" type="SMALLINT"/>
-            <column name="title" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-9">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notification" constraintName="FK25mm09173l1w0vh5sv7ec8a3w" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="emt_user" validate="true"/>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-10">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="movement" constraintName="FK4ean6gkbkv4qjbxupukuj5us5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="emt_user" validate="true"/>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-11">
-        <addForeignKeyConstraint baseColumnNames="reason_id" baseTableName="movement" constraintName="FK8b2no4mbvl144oggtob4yua5d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="reason" validate="true"/>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-12">
-        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="equipment" constraintName="FKb4svnpl9s3b1p5uuvqx5ihlki" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="category" validate="true"/>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-13">
-        <addForeignKeyConstraint baseColumnNames="equipment_id" baseTableName="movement" constraintName="FKcfo2avimys32wb8b700rtqa5h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="equipment" validate="true"/>
-    </changeSet>
-    <changeSet author="mohamed.rojbeni" id="1683576581251-14">
-        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="equipment" constraintName="FKtjcj67ywtjuqovyo2xw9qpocv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Supplier" validate="true"/>
-    </changeSet>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet author="mohamed.rojbeni" id="1684612515337-1">
+		<createTable tableName="permission">
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="PermissionPK" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-2">
+		<createTable tableName="supplier">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="SupplierPK" />
+			</column>
+			<column name="address" type="VARCHAR(255)" />
+			<column name="email" type="VARCHAR(255)" />
+			<column name="mobile" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-3">
+		<createTable tableName="category">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="categoryPK" />
+			</column>
+			<column name="description" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="threshold" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-4">
+		<createTable tableName="emt_user">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="emt_userPK" />
+			</column>
+			<column name="email" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="first_name" type="VARCHAR(255)" />
+			<column name="last_name" type="VARCHAR(255)" />
+			<column name="mobile" type="VARCHAR(255)" />
+			<column name="password" type="VARCHAR(255)" />
+			<column name="permissions" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-5">
+		<createTable tableName="equipment">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="equipmentPK" />
+			</column>
+			<column name="available" type="BOOLEAN" />
+			<column name="creation_date"
+				type="TIMESTAMP(6) WITHOUT TIME ZONE" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="part_number" type="VARCHAR(255)" />
+			<column name="serial_number" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="version" type="VARCHAR(255)" />
+			<column name="category_id" type="BIGINT" />
+			<column name="supplier_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-6">
+		<createTable tableName="movement">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="movementPK" />
+			</column>
+			<column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE" />
+			<column name="direction" type="SMALLINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="note" type="VARCHAR(255)" />
+			<column name="equipment_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="status_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-7">
+		<createTable tableName="notification">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="notificationPK" />
+			</column>
+			<column name="message" type="VARCHAR(255)" />
+			<column name="read" type="BOOLEAN" />
+			<column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE" />
+			<column name="title" type="VARCHAR(255)" />
+			<column name="user_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-8">
+		<createTable tableName="status">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="statusPK" />
+			</column>
+			<column name="direction" type="SMALLINT" />
+			<column name="title" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-9">
+		<addForeignKeyConstraint
+			baseColumnNames="user_id" baseTableName="notification"
+			constraintName="FK25mm09173l1w0vh5sv7ec8a3w" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="emt_user" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-10">
+		<addForeignKeyConstraint
+			baseColumnNames="user_id" baseTableName="movement"
+			constraintName="FK4ean6gkbkv4qjbxupukuj5us5" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="emt_user" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-11">
+		<addForeignKeyConstraint
+			baseColumnNames="category_id" baseTableName="equipment"
+			constraintName="FKb4svnpl9s3b1p5uuvqx5ihlki" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="category" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-12">
+		<addForeignKeyConstraint
+			baseColumnNames="equipment_id" baseTableName="movement"
+			constraintName="FKcfo2avimys32wb8b700rtqa5h" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="equipment" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-13">
+		<addForeignKeyConstraint
+			baseColumnNames="status_id" baseTableName="movement"
+			constraintName="FKdqiii3u7a5pp1ncyt17h7flbb" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="status" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1684612515337-14">
+		<addForeignKeyConstraint
+			baseColumnNames="supplier_id" baseTableName="equipment"
+			constraintName="FKtjcj67ywtjuqovyo2xw9qpocv" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="supplier" validate="true" />
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1683576581251-15">
+		<insert tableName="status">
+			<column name="title" value="Maitenance"></column>
+			<column name="direction" value="1"></column>
+		</insert>
+		<insert tableName="status">
+			<column name="title" value="En Panne"></column>
+			<column name="direction" value="1"></column>
+		</insert>
+		<insert tableName="status">
+			<column name="title" value="En Rebut"></column>
+			<column name="direction" value="1"></column>
+		</insert>
+		<insert tableName="status">
+			<column name="title" value="Sortie de Park"></column>
+			<column name="direction" value="1"></column>
+		</insert>
+		<insert tableName="status">
+			<column name="title" value="Retour"></column>
+			<column name="direction" value="0"></column>
+		</insert>
+	</changeSet>
 </databaseChangeLog>

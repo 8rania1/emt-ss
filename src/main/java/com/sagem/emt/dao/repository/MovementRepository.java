@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sagem.emt.dao.entity.Movement;
 import com.sagem.emt.dao.entity.MovementDirection;
-import com.sagem.emt.dao.entity.Reason;
+import com.sagem.emt.dao.entity.Status;
 import com.sagem.emt.dao.entity.User;
 
 public interface MovementRepository extends JpaRepository<Movement, Long> {
 
 	Long countByUserAndDirection(User user, MovementDirection direction);
 
-	BigDecimal countByReason(Reason reason);
+	BigDecimal countByStatus(Status reason);
 
 	void deleteByEquipmentId(Long id);
 

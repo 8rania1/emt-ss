@@ -34,7 +34,7 @@ public class Movement {
 	private Equipment equipment;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private Reason reason;
+	private Status status;
 	private String note;
 	@ManyToOne
 	@JoinColumn(nullable = false)

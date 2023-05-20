@@ -14,15 +14,15 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table(name = "reason")
+@Table(name = "status")
 @Entity
-public class Reason {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long	      id;
-    private String	      title;
-    private MovementDirection direction;
-    @JsonIgnore
-    @OneToMany(mappedBy = "reason", fetch = FetchType.LAZY)
-    private List<Movement>    movements;
+public class Status {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String title;
+	private MovementDirection direction;
+	@JsonIgnore
+	@OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
+	private List<Movement> movements;
 }

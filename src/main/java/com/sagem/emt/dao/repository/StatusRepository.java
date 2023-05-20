@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sagem.emt.dao.entity.MovementDirection;
-import com.sagem.emt.dao.entity.Reason;
+import com.sagem.emt.dao.entity.Status;
 
-public interface ReasonRepository extends JpaRepository<Reason, Long> {
-    List<Reason> findByDirection(MovementDirection direction);
+public interface StatusRepository extends JpaRepository<Status, Long> {
+    List<Status> findByDirection(MovementDirection direction);
 }
