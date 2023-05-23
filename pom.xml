@@ -39,6 +39,10 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -123,9 +127,12 @@
 						<artifactId>liquibase-maven-plugin</artifactId>
 						<version>4.21.1</version>
 						<configuration>
-							<propertyFile>src/main/resources/liquibase.properties</propertyFile>
-							<changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
-							<diffChangeLogFile>src/main/resources/schema.changelog.xml</diffChangeLogFile>
+							<propertyFile>
+								src/main/resources/liquibase.properties</propertyFile>
+							<changeLogFile>
+								src/main/resources/db/db.changelog-master.xml</changeLogFile>
+							<diffChangeLogFile>
+								src/main/resources/schema.changelog.xml</diffChangeLogFile>
 						</configuration>
 						<dependencies>
 							<dependency>
