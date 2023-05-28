@@ -36,6 +36,7 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String mobile;
+	@Column(updatable = false, nullable = false)
 	private String password;
 	@Convert(converter = StringListConverter.class)
 	private List<String> permissions;

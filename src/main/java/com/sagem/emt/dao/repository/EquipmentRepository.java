@@ -13,6 +13,6 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 	@Query("update Equipment equipment set equipment.available = :available where equipment.serialNumber = :serialNumber")
 	void available(@Param("available") boolean available, @Param("serialNumber") String serialNumber);
 
-	Long countByAvailableAndCategory(boolean available, Category category);
+	Integer countByAvailableAndCategory(boolean available, Category category);
 
 }

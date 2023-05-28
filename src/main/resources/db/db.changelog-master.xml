@@ -163,6 +163,27 @@
 			referencedTableName="supplier" validate="true" />
 	</changeSet>
 	<changeSet author="mohamed.rojbeni" id="1683576581251-15">
+		<createTable tableName="alert">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="AlertPK" />
+			</column>
+			<column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE" />
+			<column name="message" type="VARCHAR(255)" />
+			<column name="category" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="mohamed.rojbeni" id="1683576581251-16">
+		<addForeignKeyConstraint
+			baseColumnNames="category" baseTableName="alert"
+			constraintName="FKbe95xw2otoixh06skpm2guluk" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="category" validate="true" />
+	</changeSet>
+
+	<changeSet author="mohamed.rojbeni" id="1683576581251-17">
 		<insert tableName="status">
 			<column name="title" value="Maitenance"></column>
 			<column name="direction" value="1"></column>

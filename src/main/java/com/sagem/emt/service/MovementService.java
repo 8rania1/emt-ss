@@ -50,14 +50,14 @@ public class MovementService {
 	private void threshold(Long categoryId) {
 		log.info("check category threshold {}", categoryId);
 		Category category = this.categoryRepository.findById(categoryId).orElseThrow(RuntimeException::new);
-		Long count = equipmentRepository.countByAvailableAndCategory(true, category);
+		Integer count = equipmentRepository.countByAvailableAndCategory(true, category);
 		if (count < category.getThreshold()) {
-			this.notificationService.notification("threshold reached", count + " available " + category.getName());
+			this.notificationService.alert(count + " available " + category.getName(), category);
 			this.mail(category, count);
 		}
 	}
 
-	private void mail(Category category, Long available) {
+	private void mail(Category category, Integer available) {
 		List<User> users = userRepository.findAll().stream()
 				.filter(user -> user.getPermissions().contains("receive.mail.notification"))
 				.collect(Collectors.toList());

@@ -1,0 +1,60 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-1">
+        <createTable tableName="Alert">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AlertPK"/>
+            </column>
+            <column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="category" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-2">
+        <addColumn tableName="equipment">
+            <column name="creationDate" type="timestamp(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-3">
+        <addColumn tableName="emt_user">
+            <column name="firstName" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-4">
+        <addColumn tableName="emt_user">
+            <column name="lastName" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-5">
+        <addColumn tableName="equipment">
+            <column name="partNumber" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-6">
+        <addColumn tableName="equipment">
+            <column name="serialNumber" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-7">
+        <addForeignKeyConstraint baseColumnNames="category" baseTableName="Alert" constraintName="FKbe95xw2otoixh06skpm2guluk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="category" validate="true"/>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-8">
+        <dropColumn columnName="creation_date" tableName="equipment"/>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-9">
+        <dropColumn columnName="first_name" tableName="emt_user"/>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-10">
+        <dropColumn columnName="last_name" tableName="emt_user"/>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-11">
+        <dropColumn columnName="part_number" tableName="equipment"/>
+    </changeSet>
+    <changeSet author="mohamed.rojbeni (generated)" id="1685259484282-12">
+        <dropColumn columnName="serial_number" tableName="equipment"/>
+    </changeSet>
+</databaseChangeLog>

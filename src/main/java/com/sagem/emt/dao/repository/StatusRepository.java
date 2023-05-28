@@ -9,4 +9,5 @@ import com.sagem.emt.dao.entity.Status;
 
 public interface StatusRepository extends JpaRepository<Status, Long> {
     List<Status> findByDirection(MovementDirection direction);
+
 }
